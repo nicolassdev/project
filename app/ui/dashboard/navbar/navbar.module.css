@@ -1,0 +1,42 @@
+.container {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--bgSoft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  color: var(--textSoft);
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.iconsearch {
+  color: var(--bgSoft);
+}
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--textSoft);
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  color: var(--bgSoft);
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
