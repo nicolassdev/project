@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--bgSoft);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  width: max-content;
+}
+
+.iconsearch {
+  color: var(--bgSoft);
+}
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--textSoft);
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  color: var(--bgSoft);
+  outline: none;
+}

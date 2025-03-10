@@ -11,6 +11,7 @@ const Employees = () => {
         <thead>
           <tr>
             <td>Name</td>
+            <td>Email</td>
             <td>Address</td>
             <td>Status</td>
             <td>Position</td>
@@ -30,6 +31,7 @@ const Employees = () => {
                 Lester Sapaula
               </div>
             </td>
+            <td className={`${styles.email}`}>lester@gmail.com</td>
             <td className={`${styles.address}`}>Legazpi City</td>
             <td>
               <span className={`${styles.status} ${styles.fulltime}`}>
@@ -52,6 +54,7 @@ const Employees = () => {
                 John Paul Avelino
               </div>
             </td>
+            <td className={`${styles.email}`}>john@gmail.com</td>
             <td className={`${styles.address}`}>Legazpi City</td>
             <td>
               <span className={`${styles.status} ${styles.fulltime}`}>
@@ -74,13 +77,14 @@ const Employees = () => {
                 Rodgen Apin
               </div>
             </td>
+            <td className={`${styles.email}`}>gen@gmail.com</td>
             <td className={`${styles.address}`}>Legazpi City</td>
             <td>
               <span className={`${styles.status} ${styles.partime}`}>
                 Part time
               </span>
             </td>
-            <td>College Instructor</td>
+            <td>Instructor</td>
           </tr>
         </tbody>
       </table>
