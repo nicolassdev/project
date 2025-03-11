@@ -50,7 +50,7 @@ const Employee = () => {
             <td>Instructor</td>
             <td>
               <div className={styles.buttons}>
-                <Link href="/">
+                <Link href="/dashboard/employee/test">
                   <button className={`${styles.button} ${styles.view}`}>
                     View
                   </button>
