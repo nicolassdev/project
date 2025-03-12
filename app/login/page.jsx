@@ -4,10 +4,10 @@ const LoginPage = () => {
   return (
     <div className={styles.container}>
       <form action="" className={styles.form}>
-        <h1>EMPLOYEE PROFILING</h1>
-        <input type="text" placeholder="username" />
-        <input type="password" placeholder="password" />
-        <button>Login</button>
+        <h1 className={styles.title}>EMPLOYEE PROFILING</h1>
+        <input type="text" placeholder="Username" className={styles.input} />
+        <input type="password" placeholder="Password" className={styles.input} />
+        <button className={styles.button}>Login</button>
       </form>
     </div>
   );
