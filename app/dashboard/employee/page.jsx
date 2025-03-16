@@ -1,10 +1,16 @@
-import styles from "@/app/ui/dashboard/employee/employee.module.css";
+"use cliet";
+import { fetchUsers } from "@/app/lib/data";
+import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import Search from "@/app/ui/dashboard/search/search";
+import styles from "@/app/ui/dashboard/employee/employee.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import Pagination from "@/app/ui/dashboard/pagination/pagination";
 
-const Employee = () => {
+const Employee = async ({ searchParams }) => {
+  const q = searchParams?.q || "";
+  const page = Number(searchParams?.page) || 1;
+  const { count, users } = await fetchUsers(q, page);
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -26,44 +32,46 @@ const Employee = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div className={styles.users}>
-                <Image
-                  src="/noavatar.png"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className={styles.userImage}
-                />
-                Rodgen Apin
-              </div>
-            </td>
-            <td className={`${styles.gender}`}>Male</td>
-            <td className={`${styles.email}`}>gen@gmail.com</td>
-            <td className={`${styles.address}`}>Legazpi City</td>
-            <td>
-              <span className={`${styles.status} ${styles.partime}`}>
-                Part time
-              </span>
-            </td>
-            <td>Instructor</td>
-            <td>
-              <div className={styles.buttons}>
-                <Link href="/dashboard/employee/test">
-                  <button className={`${styles.button} ${styles.view}`}>
-                    View
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td>
+                <div className={styles.users}>
+                  <Image
+                    src={user.img || "/noavatar.png"}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className={styles.userImage}
+                  />
+                  {user.fullname}
+                </div>
+              </td>
+              <td className={`${styles.gender}`}>{user.gender}</td>
+              <td className={`${styles.email}`}> {user.email}</td>
+              <td className={`${styles.address}`}>{user.address}</td>
+              <td>
+                <span className={`${styles.status} ${styles.partime}`}>
+                  {user.status}
+                </span>
+              </td>
+              <td>{user.position}</td>
+              <td>
+                <div className={styles.buttons}>
+                  <Link href={`/dashboard/employee/${user.id}`}>
+                    <button className={`${styles.button} ${styles.view}`}>
+                      View
+                    </button>
+                  </Link>
+                  <button className={`${styles.button} ${styles.delete}`}>
+                    Delete
                   </button>
-                </Link>
-                <button className={`${styles.button} ${styles.delete}`}>
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      <Pagination />
+      <Pagination count={count} />
     </div>
   );
 };

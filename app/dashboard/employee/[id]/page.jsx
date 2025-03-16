@@ -14,7 +14,7 @@ const SingleEmployee = () => {
         <form action="" className={styles.form}>
           {/* Full name  */}
           <label>Full name</label>
-          <input type="text" placeholder="Full name" name="fname" required />
+          <input type="text" placeholder="Full name" name="fullname" required />
           {/* Gender  */}
           <label>Gender</label>
           <select name="gender" id="gender">
@@ -27,12 +27,12 @@ const SingleEmployee = () => {
           <input
             type="text"
             placeholder="Email address"
-            name="fname"
+            name="email"
             required
           />
           {/* Address  */}
           <label>Address</label>
-          <input type="text" placeholder="Address" name="fname" required />
+          <input type="text" placeholder="Address" name="address" required />
           {/* Status  */}
           <label>Status</label>
           <select name="status" id="status">
