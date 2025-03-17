@@ -4,7 +4,7 @@ const LoginPage = () => {
   return (
     <div className={styles.container}>
       <form action="" className={styles.form}>
-        <h1>Employee profiling</h1>
+        <h1>Employee Profiling</h1>
         <input type="text" placeholder="username" />
         <input type="password" placeholder="password" />
         <button>Login</button>
