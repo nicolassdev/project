@@ -1,12 +1,23 @@
+import { addUser } from "@/app/lib/action";
 import React from "react";
 import styles from "@/app/ui/dashboard/employee/addEmployee/addEmployee.module.css";
 
 const AddEmployee = () => {
   return (
     <div className={styles.container}>
-      <form className={styles.form}>
+      <form action={addUser} className={styles.form}>
+        {/* user name  */}
+        <input type="text" placeholder="Username" name="username" required />
+
+        {/* password  */}
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          required
+        />
         {/* Full name  */}
-        <input type="text" placeholder="Full name" name="fname" required />
+        <input type="text" placeholder="Full name" name="fullname" required />
         {/* Gender  */}
         <select name="gender" id="gender">
           <option value="general">Choose a gender</option>
@@ -14,9 +25,9 @@ const AddEmployee = () => {
           <option value="female">Female</option>
         </select>
         {/* Email  */}
-        <input type="text" placeholder="Email address" name="fname" required />
+        <input type="text" placeholder="Email address" name="email" required />
         {/* Address  */}
-        <input type="text" placeholder="Address" name="fname" required />
+        <input type="text" placeholder="Address" name="address" required />
         {/* Status  */}
         <select name="status" id="status">
           <option value="general">Choose a status</option>

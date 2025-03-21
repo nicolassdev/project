@@ -1,13 +1,42 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./employees.module.css";
 import Image from "next/image";
+
 const Employees = () => {
+  const [users, setUsers] = useState([]); // Ensure it initializes as an array
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch("/lib/employees"); // Replace with actual API route
+        if (!response.ok) throw new Error("Failed to fetch data");
+
+        const data = await response.json();
+        const sortedUsers = data?.users
+          ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Descending order
+          .slice(0, 5); // Limit to 5 users
+
+        setUsers(sortedUsers || []);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  if (loading) return <p>Loading employees...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Latest added Employees</h2>
+      <h2 className={styles.title}>Latest Added Employees</h2>
       <table className={styles.table}>
-        Employees
         <thead>
           <tr>
             <td>Name</td>
@@ -18,74 +47,44 @@ const Employees = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div className={styles.users}>
-                <Image
-                  src="/noavatar.png"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className={styles.userImage}
-                />
-                Lester Sapaula
-              </div>
-            </td>
-            <td className={`${styles.email}`}>lester@gmail.com</td>
-            <td className={`${styles.address}`}>Legazpi City</td>
-            <td>
-              <span className={`${styles.status} ${styles.fulltime}`}>
-                Full time
-              </span>
-            </td>
-            <td>Teacher</td>
-          </tr>
-
-          <tr>
-            <td>
-              <div className={styles.users}>
-                <Image
-                  src="/noavatar.png"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className={styles.userImage}
-                />
-                John Paul Avelino
-              </div>
-            </td>
-            <td className={`${styles.email}`}>john@gmail.com</td>
-            <td className={`${styles.address}`}>Legazpi City</td>
-            <td>
-              <span className={`${styles.status} ${styles.fulltime}`}>
-                Full time
-              </span>
-            </td>
-            <td>Guard</td>
-          </tr>
-
-          <tr>
-            <td>
-              <div className={styles.users}>
-                <Image
-                  src="/noavatar.png"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className={styles.userImage}
-                />
-                Rodgen Apin
-              </div>
-            </td>
-            <td className={`${styles.email}`}>gen@gmail.com</td>
-            <td className={`${styles.address}`}>Legazpi City</td>
-            <td>
-              <span className={`${styles.status} ${styles.partime}`}>
-                Part time
-              </span>
-            </td>
-            <td>Instructor</td>
-          </tr>
+          {users.length > 0 ? (
+            users.map((user) => (
+              <tr key={user.id}>
+                <td>
+                  <div className={styles.users}>
+                    <Image
+                      src={user.img || "/noavatar.png"}
+                      alt="User Avatar"
+                      width={40}
+                      height={40}
+                      className={styles.userImage}
+                    />
+                    {user.fullname}
+                  </div>
+                </td>
+                <td>{user.email}</td>
+                <td>{user.address}</td>
+                <td>
+                  <span
+                    className={`${styles.status} ${
+                      user.status === "parttime"
+                        ? styles.partime
+                        : styles.fulltime
+                    }`}
+                  >
+                    {user.status}
+                  </span>
+                </td>
+                <td>{user.position}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5" style={{ textAlign: "center" }}>
+                No employees found.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

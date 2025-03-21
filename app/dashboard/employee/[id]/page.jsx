@@ -1,3 +1,4 @@
+"use cliet";
 import React from "react";
 import Image from "next/image";
 import styles from "@/app/ui/dashboard/employee/singleEmployee/singleEmployee.module.css";
