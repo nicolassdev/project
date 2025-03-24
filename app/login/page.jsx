@@ -7,7 +7,7 @@ const LoginPage = () => {
         <h1>EMPLOYEE PROFILING</h1>
         <input type="text" placeholder="username" />
         <input type="password" placeholder="password" />
-        <button>Login</button>
+        <button>LOGIN</button>
       </form>
     </div>
   );
