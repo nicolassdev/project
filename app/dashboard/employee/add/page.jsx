@@ -9,7 +9,7 @@ const AddEmployee = () => {
         <input type="text" placeholder="Full name" name="fname" required />
         {/* Gender  */}
         <select name="gender" id="gender">
-          <option value="general">Choose a gender</option>
+          <option value="general">Choose an gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
